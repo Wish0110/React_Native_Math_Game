@@ -8,8 +8,9 @@ import {
 const App = () => {
   return (
     <View style={styles.sectionContainer}>
-      <Text style={[styles.sectionTitle, {flex:1}]}>Doo</Text>
+      <Text style={[styles.sectionTitle, {flex:1}]}>D000oo</Text>
       <Text style={[styles.sectionTitle, {flex:1}]}>Boo</Text>
+      <Text style={[styles.sectionTitle, {flex:1}]}>Bayan</Text>
       <Text style={[styles.sectionTitle, {flex:1}]}>Bayan</Text>
     </View>
   );
