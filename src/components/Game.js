@@ -24,11 +24,19 @@ target = this.randomNumbers
     .reduce((acc, curr) => acc + curr, 0);
 
 componentDidMount() {
-    setInterval(() => {
+    this.IntervalId = setInterval(() => {
         this.setState((prevState) => {
             return { remainingSeconds: prevState.remainingSeconds - 1 };
+        }, () => {
+            if (this.state.remainingSeconds === 0) {
+                clearInterval(this.intervalId);
+            }
         });
     }, 1000);
+}
+
+componentWillUnmount() {
+    clearInterval(this.intervalId);
 }
 
     isNumberSelected = (numberIndex) => {
