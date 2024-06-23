@@ -74,7 +74,7 @@ componentDidMount() {
                     />
                 ))}
                 </View>
-                <Text>{gameStatus}</Text>
+                <Text>{this.state.remainingSeconds}</Text>
             </View>
         );
     }
