@@ -10,7 +10,7 @@ static propTypes = {
     randomNumberCount: PropTypes.number.isRequired,
 };
 state = {
-    selectedNumbers: [0, 4],
+    selectedIds: [],
 }
 randomNumbers = Array
     .from({ length: this.props.randomNumberCount})
@@ -20,14 +20,22 @@ target = this.randomNumbers
     .reduce((acc, curr) => acc + curr, 0);
 
     isNumberSelected = (numberIndex) => {
-        return this.state.selectedNumbers.indexOf(numberIndex) >= 0;
+        return this.state.selectedIds.indexOf(numberIndex) >= 0;
     };
     selectNumber = (numberIndex) => {
         this.setState((prevState) => ({
             selectedNumbers: [...prevState, selectedNumbers, numberIndex],
             }));
     };
+    //playing, won, lost
+    gameStatus = () => {
+        const sumSelected = this.state.selectedIds.reduce((acc, curr)) => {
+            return acc + this.randomNumbers[curr];
+        }, 0);
+        console.log(sumSelected);
+    }
     render() {
+    this.gameStatus();
         return (
             <View style = {styles.container}>
                 <Text style = {styles.target}>{this.target}</Text>
