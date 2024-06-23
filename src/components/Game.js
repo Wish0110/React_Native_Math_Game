@@ -29,7 +29,7 @@ componentDidMount() {
             return { remainingSeconds: prevState.remainingSeconds - 1 };
         }, () => {
             if (this.state.remainingSeconds === 0) {
-                clearInterval(this.intervalId);
+                clearInterval(this.IntervalId); // Use the same variable name
             }
         });
     }, 1000);
@@ -52,6 +52,9 @@ componentWillUnmount() {
         const sumSelected = this.state.selectedIds.reduce((acc, curr) => {
             return acc + this.randomNumbers[curr];
         }, 0);
+        if (this.state.remainingSeconds === 0) {
+            return 'LOST';
+        }
         if (sumSelected < this.target) {
                     return 'PLAYING';
                 }
