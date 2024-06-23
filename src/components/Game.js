@@ -8,9 +8,11 @@ import {View, Text, StyleSheet} from 'react-native';
 class Game extends React.Component {
 static propTypes = {
     randomNumberCount: PropTypes.number.isRequired,
+    initialSeconds: PropTypes.number.isRequired,
 };
 state = {
     selectedIds: [],
+    remainingSeconds: this.props.initialSeconds,
 };
 
 randomNumbers = Array
