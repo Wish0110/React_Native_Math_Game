@@ -11,8 +11,9 @@ static propTypes = {
     initialSeconds: PropTypes.number.isRequired,
 };
 state = {
-    selectedIds: [],
-    remainingSeconds: this.props.initialSeconds,
+  selectedIds: [],
+  remainingSeconds: this.props.initialSeconds,
+  gameStatus: 'PLAYING', // Add gameStatus to the initial state
 };
 
 gameStatus = 'PLAYING';
@@ -24,6 +25,7 @@ randomNumbers = Array
 target = this.randomNumbers
     .slice(0, this.props.randomNumberCount - 2)
     .reduce((acc, curr) => acc + curr, 0);
+    //TODO: Shuffle the random numbers
 
 componentDidMount() {
     this.IntervalId = setInterval(() => {
@@ -38,7 +40,7 @@ componentDidMount() {
 }
 
 componentWillUnmount() {
-    clearInterval(this.intervalId);
+  clearInterval(this.IntervalId);
 }
 
     isNumberSelected = (numberIndex) => {
@@ -51,14 +53,13 @@ componentWillUnmount() {
     };
 
     componentWillUpdate(nextProps, nextState) {
-       if(nextState.selectedIds !== this.state.selectedIds ||
-       nextState.remainingSeconds === 0
-       ){
-            this.gameStatus = this.calcGameStatus(nextState);
-            if (this.gameStatus !== 'PLAYING') {
-                clearInterval(this.intervalId);
-            }
-       }
+      if (nextState.selectedIds !== this.state.selectedIds || nextState.remainingSeconds === 0) {
+        const gameStatus = this.calcGameStatus(nextState);
+        this.setState({ gameStatus }); // Update the state with the new gameStatus
+        if (gameStatus !== 'PLAYING') {
+          clearInterval(this.IntervalId); // Clear the interval
+        }
+      }
     }
 
     //playing, won, lost
@@ -80,9 +81,8 @@ componentWillUnmount() {
         }
     };
 
-
     render() {
-    const gameStatus = this.gameStatus;
+    const gameStatus = this.state.gameStatus;
 
         return (
             <View style = {styles.container}>
