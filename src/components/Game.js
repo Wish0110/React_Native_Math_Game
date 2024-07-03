@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet} from 'react-native';
 
 import RandomNumber from './RandomNumber';
 import shuffle from 'lodash/shuffle';
@@ -60,8 +60,6 @@ componentWillUnmount() {
       });
     };
 
-
-
     //playing, won, lost
     calcGameStatus = () => {
       const sumSelected = this.state.selectedIds.reduce((acc, curr) => {
@@ -100,6 +98,7 @@ componentWillUnmount() {
                     />
                 ))}
                 </View>
+                <Button title="Play Again" onPress={() => {}}/>
                 <Text>{this.state.remainingSeconds}</Text>
             </View>
         );
