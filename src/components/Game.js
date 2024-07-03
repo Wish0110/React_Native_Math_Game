@@ -40,6 +40,9 @@ componentDidMount() {
     }, 1000);
 }
 
+//reset
+
+
 componentWillUnmount() {
   clearInterval(this.IntervalId);
 }
